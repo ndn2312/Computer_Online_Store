@@ -12,10 +12,17 @@ class AdminAuthenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected function redirectTo($request)
+    protected function redirectTo($request): ?string
     {
-        if (! $request->expectsJson()) {
-            return route('login');
+        return $request->expectsJson() ?null :route('admin.login');
+    }
+
+    protected function authenticate($request, array $guards)
+    {
+        if ($this->auth->guard('admin')->check()) {
+            return $this->auth->shouldUse('admin');
         }
+        
+        $this->unauthenticated($request, ['admin']);
     }
 }
