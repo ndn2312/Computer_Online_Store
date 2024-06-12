@@ -62,4 +62,62 @@ class SubCategoryController extends Controller
             ]);
         }
     }
+
+    public function edit($id, Request $request){
+
+        $subCategory = SubCategory::find($id);
+        if(empty($subCategory)){
+            session()->flash('error','Không tìm thấy bản ghi');
+            return redirect()->route('sub-categories.index');
+        }
+        
+        $categories = Category::orderBy('name','ASC')->get();
+        $data['categories'] = $categories;
+        $data['subCategory'] = $subCategory;
+        return view('admin.sub_category.edit',$data);
+    }
+
+    public  function update($id, Request $request){
+        
+        $subCategory = SubCategory::find($id);
+        
+        if(empty($subCategory)){
+            session()->flash('error','Không tìm thấy bản ghi');
+            return response([
+                'status' => false,
+                'notFound' => true,
+            ]);
+            //return redirect()->route('sub-categories.index');
+        }
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            // 'slug' => 'required|unique:sub_categories',
+            'slug' => 'required|unique:sub_categories,slug,' .$subCategory->id . ',id',
+            'category' => 'required',
+            'status' => 'required',
+        ]);
+
+        if($validator->passes()){
+            // $subCategory = new SubCategory();
+            $subCategory->name = $request->name;
+            $subCategory->slug = $request->slug;
+            $subCategory->status = $request->status;
+            $subCategory->category_id = $request->category;
+            $subCategory->save();
+
+            session()->flash('success','Danh mục phụ được cập nhật thành công');
+
+            return response([
+                'status' => true,
+                'message' => 'Danh mục phụ được cập nhật thành công',
+            ]);
+
+            
+        } else {
+            return response([
+                'status' => false,
+                'errors' => $validator->errors(),
+            ]);
+        }
+    }
 }
