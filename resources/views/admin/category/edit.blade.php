@@ -6,10 +6,10 @@
     <div class="container-fluid my-2">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Tạo danh mục</h1>
+                <h1>Chỉnh sửa danh mục</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{ route('categories.index') }}" class="btn btn-primary">Back</a>
+                <a href="{{ route('categories.index') }}" class="btn btn-primary">Trở về</a>
             </div>
         </div>
     </div>
@@ -26,14 +26,14 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="name">Name</label>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" value="{{ $category->name }}">
                                 <p></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="slug">Slug</label>
-                                <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug">
+                                <input type="text" name="slug" id="slug" class="form-control" placeholder="Slug" value="{{ $category->slug }}">
                                 <p></p>
                             </div>
                         </div>
@@ -43,17 +43,22 @@
                                 <label for="imaage">Image</label>
                                 <div id="image" class="dropzone dz-clickable">
                                     <div class="dz-message needsclick">    
-                                        <br>Drop files here or click to upload.<br><br>                                            
+                                        <br>Thả tập tin vào đây hoặc bấm vào để tải lên.<br><br>                                            
                                     </div>
                                 </div>
                             </div>
+                            @if(!empty($category->image))
+                            <div>
+                                <img width="250" src="{{ asset('uploads/category/thumb/'. $category->image) }}" alt="">
+                            </div>
+                            @endif
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="status">Status</label>
                                 <select name="status" id="status" class="form-control">
-                                    <option value="1">Active</option>
-                                    <option value="0">Block</option>
+                                    <option {{ ($category->status == 1)?'selected':'' }} value="1">Active</option>
+                                    <option {{ ($category->status == 0)?'selected':'' }} value="0">Block</option>
                                 </select>
                             </div>
                         </div>
@@ -61,8 +66,8 @@
                 </div>
             </div>
             <div class="pb-5 pt-3">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a href="{{ route("categories.index") }}" class="btn btn-outline-dark ml-3">Cancel</a>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                <a href="{{ route("categories.index") }}" class="btn btn-outline-dark ml-3">Huỷ bỏ</a>
             </div>
         </form>
     </div>
@@ -78,8 +83,8 @@
         var element = $(this);
         $("button[type=submit]").prop('disabled',true);
         $.ajax({
-            url: '{{ route("categories.store") }}',
-            type: 'post',
+            url: '{{ route("categories.update",$category->id) }}',
+            type: 'put',
             data: element.serializeArray(),
             dataType: 'json',
             success: function(response){
@@ -97,6 +102,11 @@
                         .removeClass('invalid-feedback').html("");
 
                 } else{
+
+                    if(response['notFound'] == true){
+                        window.location.href="{{ route('categories.index') }}";
+
+                    }
                     var errors = response['errors'];
                     if(errors['name']){
                         $("#name").addClass('is-invalid')
