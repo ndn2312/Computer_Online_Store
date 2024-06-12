@@ -120,4 +120,24 @@ class SubCategoryController extends Controller
             ]);
         }
     }
+
+    public function destroy($id, Request $request){
+        $subCategory = SubCategory::find($id);
+        
+        if(empty($subCategory)){
+            session()->flash('error','Không tìm thấy bản ghi');
+            return response([
+                'status' => false,
+                'notFound' => true,
+            ]);
+        }
+
+        $subCategory->delete();
+        session()->flash('success','Danh mục phụ xoá thành công');
+
+        return response([
+            'status' => true,
+            'message' => 'Danh mục phụ xoá thành công',
+        ]);
+    }
 }

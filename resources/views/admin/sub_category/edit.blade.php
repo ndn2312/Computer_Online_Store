@@ -6,10 +6,10 @@
     <div class="container-fluid my-2">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Create Sub Category</h1>
+                <h1>Chỉnh sửa danh mục phụ</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="subcategory.html" class="btn btn-primary">Back</a>
+                <a href="{{ route('sub-categories.index') }}" class="btn btn-primary">Back</a>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
         </div>
         <div class="pb-5 pt-3">
             <button type="submit" class="btn btn-primary">Cập nhật</button>
-            <a href="subcategory.html" class="btn btn-outline-dark ml-3">Cancel</a>
+            <a href="{{ route('sub-categories.index') }}" class="btn btn-outline-dark ml-3">Cancel</a>
         </div>
     </form>
     </div>
@@ -109,6 +109,12 @@
 
 
                 } else{
+
+                    if(response['notFound']==true){
+                        window.location.href="{{ route('sub-categories.index') }}";
+                        return false;
+                    }
+
                     var errors = response['errors'];
                     if(errors['name']){
                         $("#name").addClass('is-invalid')
