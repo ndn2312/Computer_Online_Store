@@ -63,7 +63,7 @@
                         <tr>
                             <td>{{ $subCategory->id }}</td>
                             <td>{{ $subCategory->name }}</td>
-                            <td{{ $subCategory->categoryName}}></td>
+                            <td>{{$subCategory->categoryName}}</td>
                             <td>{{ $subCategory->slug }}</td>
                             
                             <td>
