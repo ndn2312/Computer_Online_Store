@@ -30,7 +30,7 @@
                                         <label for="title">Title</label>
                                         <input type="text" name="title" id="title" class="form-control"
                                             placeholder="Title">
-                                            <p class="error"></p>
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -38,7 +38,7 @@
                                         <label for="title">Slug</label>
                                         <input type="text" readonly name="slug" id="slug" class="form-control"
                                             placeholder="Slug">
-                                            <p class="error"></p>
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -70,7 +70,7 @@
                                         <label for="price">Giá</label>
                                         <input type="text" name="price" id="price" class="form-control"
                                             placeholder="Price">
-                                            <p class="error"></p>
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -111,14 +111,15 @@
                                             <input type="hidden" name="track_qty" value="No">
                                             <input class="custom-control-input" type="checkbox" id="track_qty"
                                                 name="track_qty" value="Yes" checked>
-                                            <label for="track_qty" class="custom-control-label">Theo dõi số lượng</label>
+                                            <label for="track_qty" class="custom-control-label">Theo dõi số
+                                                lượng</label>
                                             <p class="error"></p>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <input type="number" min="0" name="qty" id="qty" class="form-control"
                                             placeholder="Qty">
-                                            <p class="error"></p>
+                                        <p class="error"></p>
                                     </div>
                                 </div>
                             </div>
@@ -145,9 +146,9 @@
                                 <select name="category" id="category" class="form-control">
                                     <option value="">Chọn một danh mục</option>
                                     @if ($categories->isNotEmpty())
-                                        @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                        @endforeach
+                                    @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
                                     @endif
                                 </select>
                                 <p class="error"></p>
@@ -167,9 +168,9 @@
                                 <select name="brand" id="brand" class="form-control">
                                     <option value="">Chọn một thương hiệu</option>
                                     @if ($brands->isNotEmpty())
-                                        @foreach ($brands as $brand)
-                                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                                        @endforeach
+                                    @foreach ($brands as $brand)
+                                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                    @endforeach
                                     @endif
                                 </select>
                             </div>
@@ -283,7 +284,29 @@
                 console.log("Đã xảy ra lỗi");
             }
         });
-    })
+    });
+
+    Dropzone.autoDiscover = false;    
+    const dropzone = $("#image").dropzone({ 
+        init: function() {
+            this.on('addedfile', function(file) {
+                if (this.files.length > 1) {
+                    this.removeFile(this.files[0]);
+                }
+            });
+        },
+        url:  "{{ route('temp-images.create') }}",
+        maxFiles: 20,
+        paramName: 'image',
+        addRemoveLinks: true,
+        acceptedFiles: "image/jpeg,image/png,image/gif",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }, success: function(file, response){
+            $("#image_id").val(response.image_id);
+            //console.log(response)
+        }
+});
 
 </script>
 @endsection

@@ -170,7 +170,7 @@ const dropzone = $("#image").dropzone({
         });
     },
     url:  "{{ route('temp-images.create') }}",
-    maxFiles: 1,
+    maxFiles: 20,
     paramName: 'image',
     addRemoveLinks: true,
     acceptedFiles: "image/jpeg,image/png,image/gif",
