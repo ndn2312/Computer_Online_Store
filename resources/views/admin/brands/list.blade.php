@@ -88,7 +88,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="#" onclick="deleteCategory({{ $brand->id }})"
+                                <a href="#" onclick="deletebrand({{ $brand->id }})"
                                     class="text-danger w-4 h-4 mr-1">
                                     <svg wire:loading.remove.delay="" wire:target=""
                                         class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
@@ -123,9 +123,9 @@
 
 @section('customJs')
 <script>
-    function deleteCategory(id){
-        var url ='{{ route("categories.delete","ID") }}'
-        var newUrl = url.replace("ID",id)
+    function deletebrand(id){
+        var url ='{{ route("brands.delete","ID") }}';
+        var newUrl = url.replace("ID",id);
         
         if(confirm("Bạn có chắc chắn muốn xóa")){
             $.ajax({
@@ -139,7 +139,7 @@
             success: function(response){
                 if(response['status']){
 
-                    window.location.href="{{ route('categories.index') }}";
+                    window.location.href="{{ route('brands.index') }}";
                 } 
             }
         });

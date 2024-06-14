@@ -103,4 +103,26 @@ class BrandController extends Controller
             ]);
         }
     }
+    
+    public function destroy($id, Request $request){
+        $brand = Brand::find($id);
+        
+        if(empty($brand)){
+            session()->flash('error','Không tìm thấy bản ghi');
+
+            return response()->json([
+                'status' => false,
+                'notFound' => true,
+            ]);
+        }
+
+        $brand->delete();
+
+        session()->flash('success','Xoá thành công');
+        
+        return response([
+            'status' => true,
+            'message' => 'Xoá thành công',
+        ]);
+    }
 }
