@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\SubCategory;
 use Illuminate\Support\Facades\Validator;
 use App\Models\TempImage;
 use Intervention\Image\Facades\Image;
@@ -135,4 +136,85 @@ class ProductController extends Controller
         }
     }
     
+    public function edit($id, Request $request)
+    {
+        $product = Product::find($id);
+        
+        if(empty($product)){
+            return redirect()->route('products.index')->with('error','Sản phẩm không có');
+        }
+        // Tìm nạp hình ảnh sản phẩm
+        $productImages = ProductImage::where('product_id',$product->id)->get();
+
+        $subCategories = SubCategory::where('category_id', $product->category_id)->get();
+
+        $data = [];
+        $categories = Category::orderBy('name','ASC')->get();
+        $brands = Brand::orderBy('name','ASC')->get();
+        $data['categories'] = $categories;
+        $data['brands'] = $brands;
+        $data['product'] = $product;
+        $data['subCategories'] = $subCategories;
+        $data['productImages'] = $productImages;
+        return view('admin.products.edit',$data);
+    }
+    
+    public function update($id, Request $request){
+        $product = Product::find($id);
+
+        $rules = [
+            'title' => 'required',
+            'slug' => 'required|unique:products,slug,' . $product->id . ',id',
+            'price' => 'required|numeric',
+            'sku' => 'required|unique:products,sku,' . $product->id . ',id',
+            'track_qty' => 'required|in:Yes,No',
+            'category' => 'required|numeric',
+            'is_featured' => 'required|in:Yes,No',
+
+
+        ];
+
+        if(!empty($request->track_qty) && $request->track_qty == 'Yes' ){
+            $rules['qty'] = 'required|numeric';
+        }
+        
+        $validator =  Validator::make($request->all(),$rules);
+
+        if($validator->passes()){
+
+            $product->title = $request->title;
+            $product->slug = $request->slug;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $product->compare_price = $request->compare_price;
+
+            $product->sku  = $request->sku;
+
+            $product->barcode = $request->barcode;
+            $product->track_qty = $request->track_qty;
+            $product->qty = $request->qty;
+            $product->status = $request->status;
+            $product->category_id = $request->category;
+            $product->sub_category_id = $request->sub_category;
+            $product->brand_id = $request->brand;
+            $product->is_featured = $request->is_featured;
+            $product->save();
+
+            // Lưu ảnh thư viện
+            session()->flash('success','Đã cập nhật sản phẩm thành công');
+            return response()->json([
+                'status' => true,
+                'message' => 'Đã cập nhật sản phẩm thành công'
+            ]);
+
+        } else{
+            return response()->json([
+                // 'status' => true,
+                // 'message' => 'Đã thêm sản phẩm thành công'
+                'status'=> false,
+                'errors'=> $validator->errors() 
+                
+            ]);
+        }
+    }
 }
