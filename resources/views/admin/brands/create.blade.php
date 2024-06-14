@@ -6,10 +6,10 @@
     <div class="container-fluid my-2">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Create Brand</h1>
+                <h1>Tạo thương hiệu</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="brands.html" class="btn btn-primary">Back</a>
+                <a href="{{route('brands.index')}}" class="btn btn-primary">Quay lại</a>
             </div>
         </div>
     </div>
@@ -51,8 +51,8 @@
                 </div>
             </div>
             <div class="pb-5 pt-3">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a href="brands.html" class="btn btn-outline-dark ml-3">Cancel</a>
+                <button type="submit" class="btn btn-primary">Tạo</button>
+                <a href="{{route('brands.index')}}" class="btn btn-outline-dark ml-3">Huỷ bỏ</a>
             </div>
         </form>
     </div>

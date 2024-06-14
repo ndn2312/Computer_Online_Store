@@ -24,7 +24,7 @@
             <form action="" method="get">
                 <div class="card-header">
                     <div class="card-title">
-                        <button type="button" onclick="window.location.href='{{ route("sub-categories.index") }}'"
+                        <button type="button" onclick="window.location.href='{{ route('sub-categories.index') }}'"
                             class="btn btn-default btn-sm">
                             Thiết lập lại
                         </button>

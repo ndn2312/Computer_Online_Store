@@ -9,7 +9,7 @@
                 <h1>Danh mục</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{ route('categories.create') }}" class="btn btn-primary">New Category</a>
+                <a href="{{ route('categories.create') }}" class="btn btn-primary">Tạo danh mục mới</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
             <form action="" method="get">
                 <div class="card-header">
                     <div class="card-title">
-                        <button type="button" onclick="window.location.href='{{ route("categories.index") }}'"
+                        <button type="button" onclick="window.location.href='{{ route('categories.index') }}'"
                             class="btn btn-default btn-sm">
                             Thiết lập lại
                         </button>

@@ -9,7 +9,7 @@
                 <h1>Tạo sản phẩm</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="products.html" class="btn btn-primary">Back</a>
+                <a href="{{ route('products.index') }}" class="btn btn-primary">Quay lại</a>
             </div>
         </div>
     </div>
@@ -60,6 +60,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row" id="product-gallery">
+
                     </div>
                     <div class="card mb-3">
                         <div class="card-body">
@@ -192,8 +195,8 @@
             </div>
 
             <div class="pb-5 pt-3">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a href="products.html" class="btn btn-outline-dark ml-3">Cancel</a>
+                <button type="submit" class="btn btn-primary">Tạo</button>
+                <a href="{{ route('products.index') }}" class="btn btn-outline-dark ml-3">Huỷ bỏ</a>
             </div>
         </div>
     </form>
@@ -223,29 +226,23 @@
     $("#productForm").submit(function(event){
         event.preventDefault();
         var formArray = $(this).serializeArray();
-        $(button[type='submit']).prop('disabled', true);
+        $("button[type=submit]").prop('disabled',true);
         $.ajax({
             url: '{{ route("products.store") }}',
             type: 'post',
             data:  formArray,
             dataType: 'json',
             success: function(response){
+                $("button[type=submit]").prop('disabled',false);
+
                 if(response['status'] == true){
+                    $(".error").removeClass('invalid-feedback').html('');
+                    $("input[type='text'], select, input[type='number']").removeClass('is-invalid');
+                    
+                    window.location.href="{{route('products.index')}}";
 
                 } else {
                     var errors = response['errors']
-
-                    // if(errors['title']){
-                    //     $("#title").addClass('is-invalid')
-                    //     .siblings('p')
-                    //     .addClass('invalid-feedback')
-                    //     .html(errors['title']);
-                    // } else{
-                    //     $("#title").removeClass('is-invalid')
-                    //     .siblings('p')
-                    //     .removeClass('invalid-feedback')
-                    //     .html("");
-                    // }
 
                     $(".error").removeClass('invalid-feedback').html('');
                     $("input[type='text'], select, input[type='number']").removeClass('is-invalid');
@@ -288,13 +285,7 @@
 
     Dropzone.autoDiscover = false;    
     const dropzone = $("#image").dropzone({ 
-        init: function() {
-            this.on('addedfile', function(file) {
-                if (this.files.length > 1) {
-                    this.removeFile(this.files[0]);
-                }
-            });
-        },
+        
         url:  "{{ route('temp-images.create') }}",
         maxFiles: 20,
         paramName: 'image',
@@ -305,8 +296,28 @@
         }, success: function(file, response){
             $("#image_id").val(response.image_id);
             //console.log(response)
+
+
+           var html = `<div class="col-md-3" id="image-row-${response.image_id}"><div class="card">
+            <input type="hidden" name="image_array[]" value="${response.image_id}">
+                <img src="${response.ImagePath}" class="card-img-top" alt="">
+                <div class="card-body">
+                   
+                    <a href="javascript:void(0)" onclick="deleteImage(${response.image_id})" class="btn btn-danger">Xoá</a>
+                </div>
+            </div>  </div>`;
+
+            $("#product-gallery").append(html);
+        },
+        complete: function(file){
+            this.removeFile(file);
         }
 });
+
+        function deleteImage(id){
+            $("#image-row-"+id).remove();
+            
+        }
 
 </script>
 @endsection
