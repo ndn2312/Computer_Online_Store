@@ -59,10 +59,10 @@
                     </thead>
                     <tbody>
                         @if($products->isNotEmpty())
-                        @foreach($products as $product)
-                        @php
-                        $productImage = $product->product_images->first();
-                        @endphp
+                            @foreach($products as $product)
+                            @php
+                                $productImage = $product->product_images->first();
+                            @endphp
                         <tr>
                             <td>{{ $product->id }}</td>
                             <td>
