@@ -12,6 +12,8 @@ use App\Models\SubCategory;
 use Illuminate\Support\Facades\Validator;
 use App\Models\TempImage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+
 // use Image;
 
 
@@ -99,7 +101,6 @@ class ProductController extends Controller
                     $productImage->image = $imageName;
                     $productImage->save();
 
-                    //Tạo hình thu nhỏ của sản phẩm
 
                     // Ảnh lớn
                     $sourcePath = public_path().'/temp/'. $tempImageInfo->name;
@@ -149,11 +150,14 @@ class ProductController extends Controller
         $subCategories = SubCategory::where('category_id', $product->category_id)->get();
 
         $data = [];
+        // $data['product'] = $product;
+        // $data['subCategories'] = $subCategories;
         $categories = Category::orderBy('name','ASC')->get();
         $brands = Brand::orderBy('name','ASC')->get();
         $data['categories'] = $categories;
         $data['brands'] = $brands;
         $data['product'] = $product;
+        $data['subCategories'] = $subCategories;
         $data['subCategories'] = $subCategories;
         $data['productImages'] = $productImages;
         return view('admin.products.edit',$data);
@@ -181,7 +185,6 @@ class ProductController extends Controller
         $validator =  Validator::make($request->all(),$rules);
 
         if($validator->passes()){
-
             $product->title = $request->title;
             $product->slug = $request->slug;
             $product->description = $request->description;
@@ -216,5 +219,40 @@ class ProductController extends Controller
                 
             ]);
         }
+    }
+
+    public function destroy($id, Request $request){
+        $product = Product::find($id);
+
+        if(empty($product)){
+            session()->flash('error','Không có file');
+
+            return response()->json([
+                'status'=> false,
+                'notFound'=> true
+                
+            ]);
+        }
+
+        $productImages = ProductImage::where('product_id',$id)->get();
+
+        if(!empty($productImages)){
+            foreach($productImages as $productImage){
+                File::delete(public_path('uploads/product/large/'.$productImage->image));
+                File::delete(public_path('uploads/product/small/'.$productImage->image));
+
+            }
+
+            ProductImage::where('product_id',$id)->delete();
+            
+        }
+        
+        $product->delete();
+
+        session()->flash('success','Đã xoá');
+            return response()->json([
+                'status'=> true,
+                'message'=> 'Đã xoá'
+            ]);
     }
 }

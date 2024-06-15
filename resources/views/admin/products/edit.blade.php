@@ -343,6 +343,22 @@
 
         function deleteImage(id){
             $("#image-row-"+id).remove();
+            if(confirm("Bán muốn xoá")){
+                $.ajax({
+                url : '{{ route("product-images.destroy") }}',
+                type: 'delete',
+                data: {id:id},
+                success: function(response){
+                    if (response.status == true){
+                        alert(response.message);
+                    } else {
+                        alert(response.message);
+
+                    }
+
+                }
+            });
+            }
             
         }
 
