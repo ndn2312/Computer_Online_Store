@@ -174,22 +174,7 @@
                     }
                 });
             }
-function deleteItem(rowId){
-                if(confirm("Bạn chắc muốn xoá?")){
-                    $.ajax({
-                        url :'{{ route("front.deleteItem.cart") }}',
-                        type : 'post',
-                        data: {rowId:rowId},
-                        dataType: 'json',
-                        success: function(response){
-                                window.location.href = '{{ route("front.cart") }}';
-                        }
-                });
 
-                }
-
-               
-            }
            
     </script>
 @endsection
