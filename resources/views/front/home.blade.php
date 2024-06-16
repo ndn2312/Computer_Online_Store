@@ -73,7 +73,7 @@
             <div class="col-lg-3">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-check text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Sản phẩm chất lượng</h5>
+                    <h2 class="font-weight-semi-bold m-0"  style="font-family:'Times New Roman'><b style="font-size:20px">Sản phẩm chất lượng</b></h5>
                 </div>                    
             </div>
             <div class="col-lg-3 ">
