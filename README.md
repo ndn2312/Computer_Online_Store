@@ -1,7 +1,7 @@
 Thành viên trong nhóm:
 - Nguyễn Đức Nguyện
 - Trần Linh Nhi
-I. Mục tiêu và kết quả đạt được
+  I. Mục tiêu và kết quả đạt được
     1. Mục tiêu
        - Nâng cao khả năng lập trình web
        - Biết thêm được về framework cụ thể là Laravel
