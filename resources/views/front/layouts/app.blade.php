@@ -59,9 +59,9 @@
         <div class="container">
             <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
                 <div class="col-lg-4 logo">
-                    <a href="{{ route("front.home") }}" class="text-decoration-none">
-                        <span class="h1 text-uppercase text-primary bg-dark px-2">NDN</span>
-                        <span class="h1 text-uppercase text-primary bg-dark px-2">Shop</span>
+                    <a  class="text-decoration-none">
+                        <a class="h1 text-uppercase text-primary bg-dark px-2" href="{{ route("front.home") }}">NDN</a>
+                        <a class="h1 text-uppercase text-primary bg-dark px-2" href="{{ route('front.shop')}}">Shop</a>
                         {{-- <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span> --}}
                     </a>
                 </div>
