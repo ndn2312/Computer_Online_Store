@@ -46,7 +46,7 @@
                             <small class="fas fa-star-half-alt"></small>
                             <small class="far fa-star"></small>
                         </div>
-                        <small class="pt-1">(99 Reviews)</small>
+                        <small class="pt-1">(99 Đánh giá)</small>
                     </div>
 
                     @if($product->compare_price >0)
