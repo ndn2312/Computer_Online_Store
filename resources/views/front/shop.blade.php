@@ -153,7 +153,7 @@
 
                                 <div class="product-action">
                                     <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
-                                        <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+                                        <i class="fa fa-shopping-cart"></i> <p>Thêm vào giỏ hàng</p>
                                     </a>                            
                                 </div>
                             </div>                        
