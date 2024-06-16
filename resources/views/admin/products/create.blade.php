@@ -27,7 +27,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="title">Title</label>
+                                        <label for="title">Tên sản phẩm</label>
                                         <input type="text" name="title" id="title" class="form-control"
                                             placeholder="Title">
                                         <p class="error"></p>
@@ -43,9 +43,23 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label for="description">Miêu tả</label>
+                                        <label for="description">Mô tả ngắn</label>
+                                        <textarea name="short_description" id="short_description" cols="30" rows="10"
+                                            class="summernote" placeholder=""></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="description">Mô tả</label>
                                         <textarea name="description" id="description" cols="30" rows="10"
                                             class="summernote" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="description">Hoàn trả</label>
+                                        <textarea name="shipping_returns" id="shipping_returns" cols="30" rows="10"
+                                            class="summernote" placeholder=""></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -53,10 +67,10 @@
                     </div>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h2 class="h4 mb-3">Media</h2>
+                            <h2 class="h4 mb-3">Hình ảnh</h2>
                             <div id="image" class="dropzone dz-clickable">
                                 <div class="dz-message needsclick">
-                                    <br>Drop files here or click to upload.<br><br>
+                                    <br>Tải hình ảnh lên.<br><br>
                                 </div>
                             </div>
                         </div>
@@ -81,10 +95,10 @@
                                         <label for="compare_price">Giá gốc</label>
                                         <input type="text" name="compare_price" id="compare_price" class="form-control"
                                             placeholder="Compare Price">
-                                        <p class="text-muted mt-3">
+                                        {{-- <p class="text-muted mt-3">
                                             To show a reduced price, move the product’s original price into Compare at
                                             price. Enter a lower value into Price.
-                                        </p>
+                                        </p> --}}
                                     </div>
                                 </div>
                             </div>

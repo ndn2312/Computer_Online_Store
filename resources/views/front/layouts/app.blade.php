@@ -49,6 +49,8 @@
 
     <!-- Fav Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="#" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body data-instant-intensity="mousedown">
@@ -57,17 +59,17 @@
         <div class="container">
             <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
                 <div class="col-lg-4 logo">
-                    <a href="index.php" class="text-decoration-none">
-                        <span class="h1 text-uppercase text-primary bg-dark px-2">Hết</span>
-                        <span class="h1 text-uppercase text-primary bg-dark px-2">Cứu</span>
-                        <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+                    <a href="http://127.0.0.1:8000/" class="text-decoration-none">
+                        <span class="h1 text-uppercase text-primary bg-dark px-2">NDN</span>
+                        <span class="h1 text-uppercase text-primary bg-dark px-2">Shop</span>
+                        {{-- <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span> --}}
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-                    <a href="account.php" class="nav-link text-dark">My Account</a>
+                    <a href="account.php" class="nav-link text-dark">Tài khoản của tôi</a>
                     <form action="">
                         <div class="input-group">
-                            <input type="text" placeholder="Search For Products" class="form-control"
+                            <input type="text" placeholder="Tìm kiếm" class="form-control"
                                 aria-label="Amount (to the nearest dollar)">
                             <span class="input-group-text">
                                 <i class="fa fa-search"></i>
@@ -180,34 +182,34 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3>Get In Touch</h3>
-                        <p>No dolore ipsum accusam no lorem. <br>
-                        123 Street, New York, USA <br>
-                        exampl@example.com <br>
-                        000 000 0000</p>
+                        <h3>Liên hệ với chúng tôi</h3>
+                        <p>
+                        Hà Nội, Hà Đông, Việt Nam<br>
+                        kocoten001a@gmail.com <br>
+                        123 456 789</p>
                     </div>
                 </div>
     
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3>Important Links</h3>
+                        <h3>Dịch vụ và thông tin khác</h3>
                         <ul>
-                            <li><a href="about-us.php" title="About">About</a></li>
-                            <li><a href="contact-us.php" title="Contact Us">Contact Us</a></li>						
-                            <li><a href="#" title="Privacy">Privacy</a></li>
-                            <li><a href="#" title="Privacy">Terms & Conditions</a></li>
-                            <li><a href="#" title="Privacy">Refund Policy</a></li>
+                            <li><a href="about-us.php" title="About">Thông tin</a></li>
+                            <li><a href="contact-us.php" title="Contact Us">Liên hệ</a></li>						
+                            <li><a href="#" title="Privacy">Chính sách hoàn trả</a></li>
+                            <li><a href="#" title="Privacy">Liên hệ hợp tác</a></li>
+                            <li><a href="#" title="Privacy">Bảo hành</a></a></li>
                         </ul>
                     </div>
                 </div>
     
                 <div class="col-md-4">
                     <div class="footer-card">
-                        <h3>My Account</h3>
+                        <h3>Tài khoản của tôi</h3>
                         <ul>
-                            <li><a href="#" title="Sell">Login</a></li>
-                            <li><a href="#" title="Advertise">Register</a></li>
-                            <li><a href="#" title="Contact Us">My Orders</a></li>						
+                            <li><a href="#" title="Sell">Đăng nhập</a></li>
+                            <li><a href="#" title="Advertise">Đăng ký</a></li>
+                            <li><a href="#" title="Contact Us">Đơn hàng của tôi</a></li>						
                         </ul>
                     </div>
                 </div>			
@@ -218,7 +220,7 @@
                 <div class="row">
                     <div class="col-12 mt-3">
                         <div class="copy-right text-center">
-                            <p>© Copyright 2022 Amazing Shop. All Rights Reserved</p>
+                            <p>©NDN SHOP 2024 </p>
                         </div>
                     </div>
                 </div>
@@ -245,6 +247,26 @@
         navbar.classList.remove("sticky");
       }
     }
+    $.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+    function addToCart(id){
+            $.ajax({
+                url : '{{ route("front.addToCart") }}',
+                type: 'post',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    if(response.status == true){
+                        window.location.href = "{{ route('front.cart') }}";
+                    } else{
+                        alert(response.message);
+                    }
+                }
+            });
+        }
     </script>
 @yield('customJs')
 </body>

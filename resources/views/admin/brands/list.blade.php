@@ -49,10 +49,10 @@
                     <thead>
                         <tr>
                             <th width="60">ID</th>
-                            <th>Name</th>
+                            <th>Tên</th>
                             <th>Slug</th>
-                            <th width="100">Status</th>
-                            <th width="100">Action</th>
+                            <th width="100">Trạng thái</th>
+                            <th width="100">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -19,10 +19,9 @@
             @include('admin.message')
 			<div class="card card-outline card-primary">
 			  	<div class="card-header text-center">
-					<a href="#" class="h3">Administrative Panel</a>
+					<a href="#" class="h3">Trang quản trị</a>
 			  	</div>
 			  	<div class="card-body">
-					<p class="login-box-msg">Sign in to start your session</p>
 					<form action="{{ route('admin.authenticate') }}" method="post">
                         @csrf
 				  		<div class="input-group mb-3">
@@ -65,7 +64,7 @@
 				  		</div>
 					</form>
 		  			<p class="mb-1 mt-3">
-				  		<a href="forgot-password.html">I forgot my password</a>
+				  		<a href="forgot-password.html">Quên mật khẩu</a>
 					</p>					
 			  	</div>
 			  	<!-- /.card-body -->

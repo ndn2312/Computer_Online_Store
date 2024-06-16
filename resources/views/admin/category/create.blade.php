@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="name">Name</label>
+                                <label for="name">Tên danh mục</label>
                                 <input type="text" name="name" id="name" class="form-control" placeholder="Name">
                                 <p></p>
                             </div>
@@ -40,17 +40,17 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <input type="hidden" name="image_id" id="image_id" value="">
-                                <label for="imaage">Image</label>
+                                <label for="imaage">Hình ảnh</label>
                                 <div id="image" class="dropzone dz-clickable">
                                     <div class="dz-message needsclick">    
-                                        <br>Drop files here or click to upload.<br><br>                                            
+                                        <br>Tải hình ảnh lên<br><br>                                            
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="status">Status</label>
+                                <label for="status">Trạng thái</label>
                                 <select name="status" id="status" class="form-control">
                                     <option value="1">Active</option>
                                     <option value="0">Block</option>

@@ -25,7 +25,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="mb-3">
-                            <label for="name">Category</label>
+                            <label for="name">Danh mục sản phẩm</label>
                             <select name="category" id="category" class="form-control">
                                 <option value="">Chọn một danh mục</option>
                                 @if($categories->isNotEmpty())
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="name">Name</label>
+                            <label for="name">Tên</label>
                             <input type="text" name="name" id="name" class="form-control" placeholder="Name">
                             <p></p>
 	
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="status">Status</label>
+                            <label for="status">Trạng thái</label>
                             <select name="status" readonly id="status" class="form-control">
                                 <option value="1">Active</option>
                                 <option value="0">Block</option>

@@ -16,9 +16,10 @@
 
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
-                        <h1 class="display-4 text-white mb-3">Kids Fashion</h1>
-                        <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                        <h1 class="display-4 text-white mb-3">"Linh Kiện Máy Tính Chất Lượng Tối Ưu Hiệu Suất Làm Việc và Giải Trí"                        </h1>
+                        <p class="mx-md-5 px-5">"Chuyển Đổi Trải Nghiệm Máy Tính với Linh Kiện Đỉnh Cao"
+                        </p>
+                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="{{ route('front.shop') }}">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -32,9 +33,9 @@
 
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                     <div class="p-3">
-                        <h1 class="display-4 text-white mb-3">Womens Fashion</h1>
-                        <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
-                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Shop Now</a>
+                        {{-- <h1 class="display-4 text-white mb-3">Womens Fashion</h1> --}}
+                        {{-- <p class="mx-md-5 px-5">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p> --}}
+                        <a class="btn btn-outline-light py-2 px-4 mt-3" href="#">Xem ngay</a>
                     </div>
                 </div>
             </div>
@@ -72,25 +73,25 @@
             <div class="col-lg-3">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-check text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Quality Product</h5>
+                    <h2 class="font-weight-semi-bold m-0">Sản phẩm chất lượng</h5>
                 </div>                    
             </div>
             <div class="col-lg-3 ">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-shipping-fast text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">Free Shipping</h2>
+                    <h2 class="font-weight-semi-bold m-0">Miễn phí vận chuyển</h2>
                 </div>                    
             </div>
             <div class="col-lg-3">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-exchange-alt text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">14-Day Return</h2>
+                    <h2 class="font-weight-semi-bold m-0">14 ngày hoàn trả</h2>
                 </div>                    
             </div>
             <div class="col-lg-3 ">
                 <div class="box shadow-lg">
                     <div class="fa icon fa-phone-volume text-primary m-0 mr-3"></div>
-                    <h2 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                    <h2 class="font-weight-semi-bold m-0">Hỗ trợ 24/7</h5>
                 </div>                    
             </div>
         </div>
@@ -142,7 +143,7 @@
                 <div class="col-md-3">
                     <div class="card product-card">
                         <div class="product-image position-relative">
-                            <a href="" class="product-img">
+                            <a href="{{ route("front.product",$product->slug) }}" class="product-img">
                                 
                                 {{-- <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg')}}" alt=""> --}}
 
@@ -156,8 +157,8 @@
                             <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
 
                             <div class="product-action">
-                                <a class="btn btn-dark" href="#">
-                                    <i class="fa fa-shopping-cart"></i> Add To Cart
+                                <a class="btn btn-dark"  href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                    <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                                 </a>                            
                             </div>
                         </div>                        
@@ -193,7 +194,7 @@
             <div class="col-md-3">
                 <div class="card product-card">
                     <div class="product-image position-relative">
-                        <a href="" class="product-img">
+                        <a href="{{ route("front.product",$product->slug) }}" class="product-img">
                             
                             {{-- <img class="card-img-top" src="{{ asset('front-assets/images/product-1.jpg')}}" alt=""> --}}
 
@@ -207,8 +208,8 @@
                         <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
 
                         <div class="product-action">
-                            <a class="btn btn-dark" href="#">
-                                <i class="fa fa-shopping-cart"></i> Add To Cart
+                            <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                             </a>                            
                         </div>
                     </div>                        

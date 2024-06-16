@@ -5,8 +5,8 @@
     <div class="container">
         <div class="light-font">
             <ol class="breadcrumb primary-color mb-0">
-                <li class="breadcrumb-item"><a class="white-text" href="#">Home</a></li>
-                <li class="breadcrumb-item active">Shop</li>
+                <li class="breadcrumb-item"><a class="white-text"href="{{ route('front.home') }}" >Trang chủ</a></li>
+                <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.shop') }}">Cửa hàng</a></li>
             </ol>
         </div>
     </div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="sub-title mt-5">
-                    <h2>Thuương hiệu</h3>
+                    <h2>Thương hiệu</h3>
                 </div>
                 
                 <div class="card">
@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="sub-title mt-5">
-                    <h2>Price</h3>
+                    <h2>Giá tiền</h2>
                 </div>
                 
                 <div class="card">
@@ -141,7 +141,7 @@
                             <div class="product-image position-relative">
                                 
                                 
-                                <a href="" class="product-img">
+                                <a href="{{ route("front.product",$product->slug) }}" class="product-img">
                                 @if(!empty($productImage->image))
                                     <img class="card-img-top" src="{{ asset('uploads/product/small/'.$productImage->image) }}"
                                      >
@@ -152,8 +152,8 @@
                                 <a class="whishlist" href="222"><i class="far fa-heart"></i></a>                            
 
                                 <div class="product-action">
-                                    <a class="btn btn-dark" href="#">
-                                        <i class="fa fa-shopping-cart"></i> Add To Cart
+                                    <a class="btn btn-dark" href="javascript:void(0);" onclick="addToCart({{ $product->id }});">
+                                        <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                                     </a>                            
                                 </div>
                             </div>                        
@@ -176,19 +176,7 @@
 
                     <div class="col-md-12 pt-5">
                         {{ $products->withQueryString()->links()}}
-                        {{-- <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-end">
-                                <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav> --}}
+                        
                     </div>
                 </div>
             </div>
