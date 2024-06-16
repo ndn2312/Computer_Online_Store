@@ -18,18 +18,24 @@ Thành viên trong nhóm:
 
     4. Về công cụ và công nghệ sử dụng
        a) Công cụ
+       
             - Visual Studio Code
             - phpMyAdmin
             - MySQLServer
        b) Công nghệ
+       
             - Ngôn ngữ lập trình: PHP
-            - Framework: Laravel (sử dụng mô hình MVC)
-  II. Công việc triển khai.
+
+
+       
+    II. Công việc triển khai.
+  
             - Tìm hiểu về HTML và CSS cơ bản.
             - Tìm hiểu về Boostrap cơ bản.
             - Tìm hiểu về Laravel.
             - Tiến hành phân chia công việc cụ thể (làm đến đâu push lên đến đó)
   III. Hướng dẫn chạy chương trình
+  
     1. Cài đặt composer
        - Link hướng dẫn: https://www.youtube.com/watch?v=IKomW8CaXuY&t=200s
     3. Cài đặt laravel
