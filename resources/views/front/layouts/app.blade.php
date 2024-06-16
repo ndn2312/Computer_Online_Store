@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>
-        Shop Online
+        NDN SHOP
     </title>
     <meta name="description" content="" />
     <meta name="viewport"
@@ -59,14 +59,14 @@
         <div class="container">
             <div class="row align-items-center py-3 d-none d-lg-flex justify-content-between">
                 <div class="col-lg-4 logo">
-                    <a href="http://127.0.0.1:8000/" class="text-decoration-none">
+                    <a href="{{ route("front.home") }}" class="text-decoration-none">
                         <span class="h1 text-uppercase text-primary bg-dark px-2">NDN</span>
                         <span class="h1 text-uppercase text-primary bg-dark px-2">Shop</span>
                         {{-- <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span> --}}
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left  d-flex justify-content-end align-items-center">
-                    <a href="account.php" class="nav-link text-dark">Tài khoản của tôi</a>
+                    <a href="{{ route('account.profile') }}" class="nav-link text-dark">Tài khoản của tôi</a>
                     <form action="">
                         <div class="input-group">
                             <input type="text" placeholder="Tìm kiếm" class="form-control"
@@ -164,7 +164,7 @@
                     </ul>
                 </div>
                 <div class="right-nav py-0">
-                    <a href="cart.php" class="ml-3 d-flex pt-2">
+                    <a href="{{ route("front.cart") }}" class="ml-3 d-flex pt-2">
                         <i class="fas fa-shopping-cart text-primary"></i>
                     </a>
                 </div>
