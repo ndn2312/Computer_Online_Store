@@ -163,7 +163,18 @@
                 }        
             });
 
-            
+            function updateCart(rowId, qty){
+                $.ajax({
+                    url :'{{ route("front.updateCart") }}',
+                    type : 'post',
+                    data: {rowId:rowId, qty:qty},
+                    dataType: 'json',
+                    success: function(response){
+                            window.location.href = '{{ route("front.cart") }}';
+                    }
+                });
+            }
+
             function deleteItem(rowId){
                 if(confirm("Bạn chắc muốn xoá?")){
                     $.ajax({
