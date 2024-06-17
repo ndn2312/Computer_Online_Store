@@ -35,6 +35,9 @@ Thành viên trong nhóm:
             - Tìm hiểu về Laravel.
             - Tiến hành phân chia công việc cụ thể (làm đến đâu push lên đến đó)
   III. Hướng dẫn chạy chương trình
+
+      Link trang chủ: http://127.0.0.1:8000/
+      Link admin: http://127.0.0.1:8000/admin
   
     1. Cài đặt composer
        - Link hướng dẫn: https://www.youtube.com/watch?v=IKomW8CaXuY&t=200s
